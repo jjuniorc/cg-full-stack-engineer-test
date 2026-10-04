@@ -1,0 +1,19 @@
+# Dependencies (platform-specific, must be installed inside the image)
+node_modules
+front-end/node_modules
+
+# Build output (rebuilt inside the image)
+front-end/dist
+
+# VCS / editor / OS
+.git
+.gitignore
+.DS_Store
+*.log
+
+# Local-only files (never bake these into the image)
+.env
+
+# Docs / assets not needed at runtime
+images
+README.md

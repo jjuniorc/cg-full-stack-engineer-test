@@ -1,0 +1,20 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: cg-full-stack-engineer-test:latest
+    container_name: cg-full-stack-engineer-test
+    ports:
+      - "3001:3001"
+    environment:
+      PORT: "3001"
+      OPENMETEO_URL: "https://api.open-meteo.com/v1/forecast"
+      OPENMETEO_GEOCODING_URL: "https://geocoding-api.open-meteo.com/v1/search"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:3001/ >/dev/null 2>&1 || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
